@@ -1,3 +1,11 @@
+
+#include <stdio.h>
+#include <stdlib.h>   // exit
+#include <sys/wait.h> // wait
+#include <unistd.h>   // fork
+#include <signal.h>
+
+
 int main(){
     int rc, status, pid;
     rc = fork();
