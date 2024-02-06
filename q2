@@ -19,9 +19,11 @@ int main(void){
     if(rc < 0) {
         printf("failed to fork\n");
     } else if(rc == 0) {
+        //Child process
         write(fd, buf1, sizeof(buf1) - 1); //remove '\0'
         exit(0);
     } else {
+        //Parent process
         wait(NULL); // Wait for the child process to finish
         write(fd, buf2, sizeof(buf2) - 1); //remove '\0'
     }
