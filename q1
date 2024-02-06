@@ -6,8 +6,7 @@ int main() {
   int x = 100;
   int rc = fork();
   if (rc < 0) {
-    // fork failed; exit
-    fprintf(stderr, "fork failed\n");
+    fprintf(stderr, "fork failed\n");    // fork failed; exit
     exit(EXIT_FAILURE);
   } else if (rc == 0) {
     x = 101;
