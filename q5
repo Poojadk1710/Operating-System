@@ -1,5 +1,10 @@
-#include "chapter5.h"
+
+#include <stdio.h>
+#include <stdlib.h>   // exit
+#include <sys/wait.h> // wait
+#include <unistd.h>   // fork
 #include <signal.h>
+
 
 int main(void){
     int rc, status, pid;
