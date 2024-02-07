@@ -2,27 +2,35 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <string.h>
+#include <fcntl.h>
+
 
 #define MAXLINE 1024
 
-int main() {
+int main() 
+{
     int fd[2];
     pid_t pid1, pid2;
     char line[MAXLINE];
 
-    if (pipe(fd) < 0) {
-        perror("pipe error");
+    if (pipe(fd) < 0) {        //Error
+        perror("Pipe error");
         exit(EXIT_FAILURE);
     }
 
-    if ((pid1 = fork()) < 0) {
-        perror("fork error");
+    if ((pid1 = fork()) < 0)
+    {    //Fork error
+        perror("Fork error");
         exit(EXIT_FAILURE);
+        
     } else if (pid1 == 0) {
         // Child process 1
+        
         close(fd[0]);  // Close read end of the pipe
 
         // Redirect stdout to the write end of the pipe
+        
         if (dup2(fd[1], STDOUT_FILENO) < 0) {
             perror("dup2 error");
             exit(EXIT_FAILURE);
