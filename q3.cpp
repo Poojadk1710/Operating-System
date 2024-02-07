@@ -5,23 +5,34 @@
 
 int main(){
     int rc;
+
+    //For execl
     rc = fork();
     char * args[] = {"ls", "-l", NULL};
     char * env[] = {NULL};
 
-    if(rc < 0)
-        printf("failed to fork\n");
-    else if(rc == 0){
-        //execl("/bin/ls", "ls", "-l", (char *) 0);
+    if(rc < 0)        //Error occurred
+    {
+        fprintf(stderr, "Failed to fork\n");
+        exit(EXIT_FAILURE);
+    }
+    else if(rc == 0){    //Child process
+        
+        execl("/bin/ls", "ls", "-l", NULL);  //using execl
+        
         //execv("/bin/ls", args);
         //execle("/bin/ls", "ls", "-l", (char *) 0, env);
         //execve("/bin/ls", args, env);
         //execlp("ls", "ls", "-l", (char *) 0);
-        execvp("ls", args);
-    }
-    else{
+
+        perror("execl");
+        exit(EXIT_FAILURE);
+        
+    } else {                //Parent
+        
         sleep(1);
         printf("Goodbye from parent\n");
+        
     }
 
     return 0;
