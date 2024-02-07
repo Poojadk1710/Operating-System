@@ -36,10 +36,13 @@ int main()
         write(fd, buf1, sizeof(buf1) - 1);     //removes '\0'
         exit(0);
         
-    } else {
-        //Parent process
+    } else {                //Parent process
+        
         wait(NULL); // Wait for the child process to finish
+        const char * child_msg = "Hey, This is parent process\n";
+        printf("The parent process is writing on the file");
         write(fd, buf2, sizeof(buf2) - 1); //remove '\0'
+    
     }
 
     close(fd); // Close the file descriptor
