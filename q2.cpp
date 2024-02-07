@@ -10,7 +10,7 @@
 int main()
 {
     int fd, rc;
-    fd = open("Output.txt", O_WRONLY | O_APPEND);
+    fd = open("output.txt", O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     
     if (fd < 0) 
     {
