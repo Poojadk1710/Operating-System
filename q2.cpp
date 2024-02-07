@@ -32,7 +32,7 @@ int main()
     } else if(rc == 0)     //Child process
     {
         const char * child_msg = "Hey, This is child process\n";
-        printf("The child process is writing on the file");
+        printf("The child process is writing on the file\n");
         write(fd, buf1, sizeof(buf1) - 1);     //removes '\0'
         exit(0);
         
@@ -40,7 +40,7 @@ int main()
         
         wait(NULL); // Wait for the child process to finish
         const char * child_msg = "Hey, This is parent process\n";
-        printf("The parent process is writing on the file");
+        printf("The parent process is writing on the file\n");
         write(fd, buf2, sizeof(buf2) - 1); //remove '\0'
     
     }
